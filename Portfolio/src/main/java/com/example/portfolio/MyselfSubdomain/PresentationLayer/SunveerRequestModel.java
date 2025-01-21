@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ZakoRequestModel {
+public class SunveerRequestModel {
      int age;
      String nationality;
 }

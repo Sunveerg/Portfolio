@@ -10,11 +10,11 @@ import org.springframework.data.annotation.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Zako {
+public class Sunveer {
 
     @Id
     private String id;
-    private String zakoId;
+    private String sunveerId;
     private int age;
     private String nationality;
 }

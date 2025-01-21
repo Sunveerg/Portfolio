@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ZakoResponseModel {
-    String zakoId;
+public class SunveerResponseModel {
+    String sunveerId;
     int age;
     String nationality;
 }

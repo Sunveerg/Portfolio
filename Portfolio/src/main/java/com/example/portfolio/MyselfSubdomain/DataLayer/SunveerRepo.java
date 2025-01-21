@@ -5,8 +5,8 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface ZakoRepo extends ReactiveMongoRepository<Zako, String> {
+public interface SunveerRepo extends ReactiveMongoRepository<Sunveer, String> {
 
-    Mono<Zako> findZakoByZakoId(String zako);
+    Mono<Sunveer> findSunveerBySunveerId(String sunveerId);
 
 }

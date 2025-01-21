@@ -1,14 +1,13 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './HomePage.css'
+import '../components/css/HomePage.css';
+import {useNavigate} from "react-router-dom";
 
 export const Home: React.FC = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/menuOrder');
-  };
+    const handleEnterClick = () => {
+        navigate('/sunveer');
+    };
 
   return (
     <main className="homePage">
@@ -16,14 +15,12 @@ export const Home: React.FC = () => {
       <div className="welcomeText">
         <h4>Welcome</h4>
         <h1>
-          Zakaria <br /> Boudboub
+          Sunveer Ghumman
         </h1>
         <p className="paragraph}=">
-       THIS IS MY PORTFOLIO
+       PORTFOLIO
         </p>
-        <button className="button" onClick={handleClick}>
-          Order Now
-        </button>
+          <button onClick={handleEnterClick}>Enter Porfolio</button>
       </div>
     </main>
   );
