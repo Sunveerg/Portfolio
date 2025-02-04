@@ -1,4 +1,4 @@
 export interface sunveerRequestModel {
-  nationality: string;
-  age: number;
+  skills: string;
+  hobbies: string;
 }

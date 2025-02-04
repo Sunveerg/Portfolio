@@ -1,62 +1,54 @@
-import React, { useState } from 'react';
-import { PathRoutes } from '../path.routes';
-import { NavLink } from 'react-router-dom';
+import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
+import './css/Navbar.css';
 
-const navigationItems = [
-  { label: 'Home', path: PathRoutes.HomePage },
-  { label: 'Menu', path: '/menu' },
-  { label: 'Order', path: '/menuOrder' },
-  { label: 'Contact', path: '/contact' },
-  { label: 'Account', path: '/profile' },
-];
 
-export const NavBar: React.FC = () => {
+export const Navbar: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleLoginRedirect = () => {
     setLoading(true);
-    const audience = 'https://dev-5kbvxb8zgblo1by3.us.auth0.com/api/v2/';
+    const audience = 'https://dev-bwwn1gqnz1pbm8ay.us.auth0.com/api/v2/';
     const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
     const redirectUri = process.env.REACT_APP_AUTH0_CALLBACK_URL;
 
-    // Redirect the user to the Auth0 Universal Login page
     window.location.href =
-      `https://dev-5kbvxb8zgblo1by3.us.auth0.com/authorize?` +
-      `response_type=token&` +
-      `client_id=${clientId}&` + // Your Auth0 Client ID
-      `redirect_uri=${redirectUri}&` + // The redirect URL after login
-      `scope=openid profile email read:current_user read:roles&` + // Scope to get user information
-      `audience=${audience}&` + // Specify the audience for access token
-      `prompt=login`; // Force the login page to prompt user credentials
+        `https://dev-bwwn1gqnz1pbm8ay.us.auth0.com/authorize?` +
+        `response_type=token&` +
+        `client_id=${clientId}&` +
+        `redirect_uri=${redirectUri}&` +
+        `scope=openid profile email read:current_user read:roles&` +
+        `audience=${audience}&` +
+        `prompt=login`;
   };
 
   return (
-    <nav
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      <div >
-        <div>Noodle Star</div>
-        <div role="menubar">
-          {navigationItems.map(item => (
-            <NavLink
-              key={item.label}
-              to={item.path}
-              role="menuitem"
-            >
-              {item.label}
-            </NavLink>
-          ))}
-          {/* Add the Login item as a button */}
-          <button
-            onClick={handleLoginRedirect}
-            disabled={loading}
-          >
-            {loading ? 'Redirecting to Auth0...' : 'Login'}
-          </button>
+      <nav className="navbar">
+        <div className="navbar-container">
+          <ul className="nav-links">
+            <li>
+              <Link to="/home" className="nav-link">Home</Link>
+            </li>
+            <li>
+              <Link to="/sunveer" className="nav-link">About</Link>
+            </li>
+            <li>
+              <Link to="/projects" className="nav-link">Projects</Link>
+            </li>
+            <li>
+              <Link to="/contact" className="nav-link">Contact</Link>
+            </li>
+          </ul>
         </div>
-      </div>
-    </nav>
+        <button
+                  onClick={handleLoginRedirect}
+                  disabled={loading}
+                  className="login-button"
+              >
+                {loading ? 'Redirecting to Auth0...' : 'Login'}
+        </button>
+      </nav>
   );
 };
+
+export default Navbar;

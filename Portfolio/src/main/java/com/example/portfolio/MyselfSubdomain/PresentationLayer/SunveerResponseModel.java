@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SunveerResponseModel {
     String sunveerId;
-    int age;
-    String nationality;
+    String skills;
+    String hobbies;
 }

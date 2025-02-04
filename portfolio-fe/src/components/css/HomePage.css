@@ -1,14 +1,25 @@
 /* Global Styles */
-body {
+/* Global Styles */
+main {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
     color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    animation: backgroundChange 5s forwards; /* Run animation once and stop at the final color */
+}
+
+/* Keyframes for background animation */
+@keyframes backgroundChange {
+    0% {
+        background-color: #E2C8A8; /* Lighter shade */
+    }
+    100% {
+        background-color: #7B5B3A; /* Darker shade */
+    }
 }
 
 /* Home Page Styles */
@@ -18,18 +29,43 @@ body {
     align-items: center;
     flex-direction: column;
     text-align: center;
-    background-color: #fff;
+    background-color: #CFB595;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 600px;
+    width: 50%;  /* Initial width */
+    height: 300px; /* Initial height */
+    transition: all 1s ease; /* Smooth transition */
+    overflow: hidden; /* Prevents content overflow during animation */
+}
+
+/* Folder opening animation */
+.homePage.folder-open {
+    animation: openFolder 1s forwards;
+}
+
+@keyframes openFolder {
+    0% {
+        width: 50%; /* Start with 50% width */
+        height: 300px;
+        border-radius: 10px;
+    }
+    50% {
+        width: 60%; /* Adjusted to expand width less */
+        height: 350px; /* Adjusted to expand height less */
+        border-radius: 15px;
+    }
+    100% {
+        width: 75%; /* Adjusted to expand width less */
+        height: 400px; /* Adjusted to expand height less */
+        border-radius: 20px;
+    }
 }
 
 /* Welcome Text */
 .welcomeText h4 {
     font-size: 1.5rem;
-    color: #007acc;
+    color: #EDE8E0;
     margin-bottom: 0.5rem;
 }
 
@@ -50,7 +86,7 @@ body {
 
 /* Home Page Button Styles */
 button {
-    background-color: #007acc; /* Primary color */
+    background-color: #341C02; /* Primary color */
     color: #fff; /* Text color */
     font-size: 1rem; /* Font size */
     padding: 0.8rem 1.5rem; /* Spacing inside the button */
@@ -90,4 +126,3 @@ button:active {
         padding: 0.7rem 1.2rem; /* Adjust padding for smaller screens */
     }
 }
-

@@ -1,5 +1,5 @@
 export interface sunveerResponseModel {
   sunveerId: number;
-  nationality: string;
-  age: number;
+  skills: string;
+  hobbies: string;
 }

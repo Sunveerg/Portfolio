@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SunveerRequestModel {
-     int age;
-     String nationality;
+     String skills;
+     String hobbies;
 }

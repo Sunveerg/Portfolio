@@ -15,6 +15,6 @@ public class Sunveer {
     @Id
     private String id;
     private String sunveerId;
-    private int age;
-    private String nationality;
+    private String skills;
+    private String hobbies;
 }

@@ -41,7 +41,14 @@ const SunveerList: React.FC = (): JSX.Element => {
 
   return (
     <div className="top-section">
-      <h2 className="page-title">Sunveer</h2>
+      <h2 className="page-title">Sunveer Ghumman</h2>
+
+      <img
+          src="https://media.licdn.com/dms/image/v2/D4E03AQGall4Soxq-HQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1728405851116?e=1743638400&v=beta&t=kKzFYapyUH-TqUI0uN0t9CIGF645me5uIMh7esu0ueg"
+          alt="Sunveer Ghumman"
+          className="profile-image"
+      />
+
       <div className="sunveer-list">
         {sunveerItems.length > 0 ? (
           sunveerItems.map(item => (
@@ -51,8 +58,8 @@ const SunveerList: React.FC = (): JSX.Element => {
               onClick={() => handleSunveerClick(item.sunveerId)}
             >
               <div className="item-content">
-                <p className="nationality">Nationality: {item.nationality}</p>
-                <p className="age">Age: {item.age}</p>
+                <p className="skills"><b>Skills:</b> {item.skills}</p>
+                <p className="hobbies"><b>Hobbies:</b> {item.hobbies}</p>
               </div>
             </div>
           ))
