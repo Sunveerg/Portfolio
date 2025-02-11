@@ -8,8 +8,52 @@ import '../components/css/ProjectsPage.css';
 const Projects: React.FC = (): JSX.Element => {
     const [projectItems, setProjectItems] = useState<projectResponseModel[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [isAdmin, setIsAdmin] = useState<boolean>(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            const accessToken = localStorage.getItem('access_token');
+            if (!accessToken) {
+                console.error('No access token found');
+                setLoading(false);
+                return;
+            }
+
+            try {
+                // Decode token payload
+                const base64Url = accessToken.split('.')[1];
+                const decodedPayload = JSON.parse(atob(base64Url));
+
+                console.log('Decoded JWT Payload:', decodedPayload); // Debugging
+
+                // Extract roles from token (adjust the key to match your Auth0 setup)
+                const roles: string[] = decodedPayload['https://portfolio/roles'] || [];
+                console.log('Extracted Roles:', roles); // Debugging
+
+                setIsAdmin(roles.includes('Admin'));
+
+                const response = await fetch(
+                    'https://dev-bwwn1gqnz1pbm8ay.us.auth0.com/userinfo',
+                    {
+                        method: 'GET',
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`,
+                        },
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user info');
+                }
+
+            } catch (err) {
+                console.error('Error fetching user info:', err);
+            }
+        };
+
+        fetchUserInfo();
+    }, []);
 
     useEffect(() => {
         const fetchProjectsData = async (): Promise<void> => {
@@ -60,12 +104,16 @@ const Projects: React.FC = (): JSX.Element => {
                                     <img className="project-image" alt={"project"} src={item.projectImage}></img>
                                     <p className="team-size"><b>Team Size:</b> {item.projectTeamSize}</p>
                                 </a>
-                                <button className="delete-button" onClick={() => handleDelete(item.projectId)}>
-                                    ❌
-                                </button>&nbsp;
-                                <button className="edit-button" onClick={() => navigate(`/updateProject/${item.projectId}`)}>
-                                    ✏️️
-                                </button>
+                                {isAdmin && (
+                                    <>
+                                        <button className="delete-button" onClick={() => handleDelete(item.projectId)}>
+                                            ❌
+                                        </button>&nbsp;
+                                        <button className="edit-button" onClick={() => navigate(`/updateProject/${item.projectId}`)}>
+                                            ✏️️
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         </div>
                     ))
