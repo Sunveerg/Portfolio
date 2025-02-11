@@ -11,11 +11,7 @@ logging:
 spring:
   data:
     mongodb:
-      username: user
-      password: pwd
-      host: localhost
-      port: 27017
-      database: portfolio
+      uri: mongodb+srv://doadmin:6xqK7R4p8g520Po1@portfolio-database-155d2bc1.mongo.ondigitalocean.com/admin?retryWrites=true&w=majority
       authentication-database: admin
       auto-index-creation: true
 de:
