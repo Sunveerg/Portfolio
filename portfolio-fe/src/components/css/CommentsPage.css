@@ -1,0 +1,88 @@
+/* Comments Page Styles */
+
+/* Container for the comments section */
+.top-section {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Grid layout for comments */
+.comment-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    padding: 1rem;
+}
+
+/* Comment item card */
+.comment-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.comment-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Distinction for unapproved comments */
+.comment-item.unapproved {
+    background-color: #fff8e1;  /* Light yellow */
+    border: 1px solid #ffc107;  /* Amber */
+}
+
+.comment-item.unapproved:hover {
+    box-shadow: 0 6px 12px rgba(255, 193, 7, 0.3);
+}
+
+/* Styling for comment information */
+.comment-content {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+.comment-author {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #007acc;
+}
+
+/* No Items Message */
+.no-items {
+    font-size: 1.2rem;
+    color: #888;
+    margin-top: 2rem;
+}
+
+/* Loading Message */
+.loading-items {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007acc;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .top-section {
+        padding: 1rem;
+    }
+
+    .comment-item {
+        padding: 0.8rem;
+    }
+
+    .comment-content {
+        font-size: 0.9rem;
+    }
+}

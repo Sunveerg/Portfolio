@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
               <Link to="/projects" className="nav-link">Projects</Link>
             </li>
             <li>
-              <Link to="/contact" className="nav-link">Contact</Link>
+              <Link to="/comments" className="nav-link">Comments</Link>
             </li>
           </ul>
         </div>

@@ -36,7 +36,7 @@ const SunveerList: React.FC = (): JSX.Element => {
   };
 
   if (loading) {
-    return <div>Loading items...</div>;
+    return <div>Loading information...</div>;
   }
 
   return (

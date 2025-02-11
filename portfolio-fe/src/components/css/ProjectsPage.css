@@ -1,0 +1,122 @@
+/* Project Page Styles */
+
+/* Container for the project section */
+.top-section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Grid layout for projects */
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+/* Project item card */
+.project-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling for project information */
+.item-content p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.project-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #341C02;
+}
+
+.project-description {
+    color: #444;
+    font-style: italic;
+}
+
+.project-link {
+    color: #007acc;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.project-link:hover {
+    color: #005a9e;
+}
+
+.team-size {
+    font-weight: bold;
+    color: #777;
+}
+
+/* Image Styling */
+.project-image {
+    width: 100%; /* Ensures image stays within the card */
+    height: auto; /* Maintains aspect ratio */
+    max-height: 200px;
+    object-fit: cover; /* Ensures image fits nicely within the dimensions */
+    border-radius: 6px;
+    margin-top: 1rem;
+    display: block;
+    border: 2px solid black;
+}
+
+/* No Items Message */
+.no-items {
+    font-size: 1.2rem;
+    color: #888;
+    margin-top: 2rem;
+}
+
+/* Loading Message */
+.loading-items {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007acc;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.project-item a {
+    text-decoration: none;  /* Removes underline */
+    color: inherit;  /* Ensures it uses normal text color */
+    display: block;  /* Makes the entire link behave as a block */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .top-section {
+        padding: 1rem;
+    }
+
+    .project-item {
+        padding: 1rem;
+    }
+
+    .item-content p {
+        font-size: 0.9rem;
+    }
+
+    .project-image {
+        max-height: 150px;
+    }
+}
