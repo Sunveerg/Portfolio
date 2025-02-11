@@ -86,7 +86,7 @@ public class SecurityConfig {
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.addAllowedOrigin("http://localhost:3000");
-        corsConfig.addAllowedOrigin("https://oyster-app-j2bx2.ondigitalocean.app/");
+        corsConfig.addAllowedOrigin("https://oyster-app-j2bx2.ondigitalocean.app");
         corsConfig.addAllowedOrigin("https://dev-bwwn1gqnz1pbm8ay.us.auth0.com/");
         corsConfig.addAllowedHeader("*");
         corsConfig.addAllowedMethod("*");
