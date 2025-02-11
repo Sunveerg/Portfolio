@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .authorizeExchange(authz -> {
                     log.info("Configuring endpoint permissions...");
                     authz.matchers(ServerWebExchangeMatchers
-                            .pathMatchers("/api/v1/users/**")).authenticated()
+                                    .pathMatchers("/api/v1/users/**")).authenticated()
                             .anyExchange().permitAll();
                     log.info("Finished configuring endpoint permissions.");
                 })

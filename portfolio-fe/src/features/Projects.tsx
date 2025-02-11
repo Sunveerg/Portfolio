@@ -122,8 +122,9 @@ const Projects: React.FC = (): JSX.Element => {
                 )}
             </div>
 
-            <button onClick={() => navigate('/addProject')} >Add</button>
-
+            {isAdmin && (
+                <button onClick={() => navigate('/addProject')} >Add</button>
+            )}
         </div>
     );
 };

@@ -17,6 +17,7 @@
     margin: 0 auto;
 }
 
+/* Logo */
 .logo a {
     font-size: 1.5rem;
     font-weight: bold;
@@ -24,6 +25,7 @@
     text-decoration: none;
 }
 
+/* Navigation Links */
 .nav-links {
     display: flex;
     list-style: none;
@@ -43,6 +45,61 @@
     color: #A9846A;
 }
 
-.login-button {
+/* Mobile Menu */
+.menu-icon {
+    display: none; /* Hidden by default */
+    font-size: 2rem;
+    color: #EDE8E0;
+    cursor: pointer;
+}
+
+/* Login/Logout Buttons */
+.login-button, .logout-button {
     background-color: #A9846A;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-button:hover, .logout-button:hover {
+    background-color: #8B6748;
+}
+
+/* Mobile Menu */
+.menu-icon {
+    display: none;
+    font-size: 2rem;
+    color: #EDE8E0;
+    cursor: pointer;
+}
+
+/* Hide menu by default on small screens */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #341C02;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .nav-links.active {
+        display: flex; /* Show when toggled */
+    }
+
+    .nav-link {
+        padding: 1rem 0;
+        width: 100%;
+    }
 }
