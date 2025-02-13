@@ -127,7 +127,7 @@ public class DataSetupServiceReview implements CommandLineRunner {
                 "This is a project created for a chinese restaurant in Montreal called Noodle Star." +
                         " We are designing a full-stack web application from scratch where we include a place to view the menu, place orders, leave reviews, access your account, etc." +
                         " The project includes a React front-end, Spring Boot back-end, and a MongoDB database.",
-                "https://github.com/cgerard321/champlain_petclinic",
+                "https://github.com/Sunveerg/Noodle-Star",
                 "https://i.postimg.cc/yd9xsmXX/noodlestar.png",
                 4);
 

@@ -61,7 +61,13 @@ const Projects: React.FC = (): JSX.Element => {
                 setLoading(true);
                 const response = await getAllProjects();
                 if (Array.isArray(response)) {
-                    setProjectItems(response);
+                    // Reorder projects so that projectId2 appears first
+                    const reorderedProjects = response.sort((a, b) => {
+                        if (a.projectId === 'project2') return -1; // Move projectId2 to the front
+                        if (b.projectId === 'project2') return 1; // Keep other projects in place
+                        return 0; // Keep other projects in the same order
+                    });
+                    setProjectItems(reorderedProjects);
                 } else {
                     console.error('Fetched data is not an array:', response);
                 }

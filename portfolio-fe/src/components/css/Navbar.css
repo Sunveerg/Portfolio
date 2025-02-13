@@ -41,8 +41,20 @@
     transition: color 0.3s ease;
 }
 
+/* Active Tab Decoration */
+.nav-link.active {
+    color: #A9846A; /* Highlight color for the active tab */
+    font-weight: bold; /* Make the active tab bold */
+    border-bottom: 2px solid #A9846A; /* Add a bottom border to highlight the active tab */
+}
+
+.nav-links .nav-link {
+    position: relative;
+    padding-bottom: 5px; /* Add some space for the underline effect */
+}
+
 .nav-link:hover {
-    color: #A9846A;
+    color: #A9846A; /* Match the hover color with the active tab highlight */
 }
 
 /* Mobile Menu */
@@ -74,6 +86,57 @@
     font-size: 2rem;
     color: #EDE8E0;
     cursor: pointer;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown button.navItem {
+    background-color: #A9846A;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.dropdown button.navItem:hover {
+    background-color: #8B6748;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #341C02;
+    min-width: 120px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dropdownContent button {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #EDE8E0;
+    padding: 10px;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.dropdownContent button:hover {
+    background-color: #A9846A;
+}
+
+.dropdown:hover .dropdownContent {
+    display: block;
 }
 
 /* Hide menu by default on small screens */
