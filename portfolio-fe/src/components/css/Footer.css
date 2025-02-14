@@ -1,10 +1,11 @@
 .footer {
-    background-color: #341C02; /* Matches the page background */
-    color: #EDE8E0; /* Matches the text color of the theme */
+    background: linear-gradient(135deg, #2c1200, #4b2906);
+    color: #EDE8E0;
     padding: 1.5rem 0;
     text-align: center;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle top shadow */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
     margin-top: 2rem;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .footer-content {
@@ -14,22 +15,79 @@
 
 .footer-text {
     font-size: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+    opacity: 0.9;
 }
 
+/* Social Links Container */
 .footer-socials {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 2rem;
+    margin-top: 0.5rem;
 }
 
-.footer-socials a {
-    color: #EDE8E0;
+/* Individual Social Link */
+.footer-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     text-decoration: none;
+    color: #EDE8E0;
+    font-size: 1rem;
     font-weight: bold;
+    transition: transform 0.3s ease, filter 0.3s ease, background 0.3s ease;
+
+    /* Button-like Styling */
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    background-color: black;
+    border: 2px solid black;
+}
+
+/* Icon Styles */
+.social-image {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+/* Text Next to Icons */
+.footer-link span {
     transition: color 0.3s ease;
 }
 
-.footer-socials a:hover {
-    color: #007acc; /* Matches the highlight color in the theme */
+/* Hover Effects */
+.footer-link:hover {
+    transform: translateY(-3px);
+    filter: drop-shadow(0px 0px 8px rgba(255, 165, 0, 0.8));
+    background-color: #222; /* Slightly lighter black on hover */
+}
+
+.footer-link:hover span {
+    color: #ffcc80;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-socials {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .social-image {
+        width: 35px;
+        height: 35px;
+    }
+
+    .footer-link {
+        justify-content: center;
+    }
 }

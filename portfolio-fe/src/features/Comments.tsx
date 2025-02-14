@@ -12,7 +12,6 @@ const Comments: React.FC = (): JSX.Element => {
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
     const navigate = useNavigate();
 
-
     useEffect(() => {
         const fetchUserInfo = async () => {
             const accessToken = localStorage.getItem('access_token');
@@ -23,32 +22,21 @@ const Comments: React.FC = (): JSX.Element => {
             }
 
             try {
-                // Decode token payload
                 const base64Url = accessToken.split('.')[1];
                 const decodedPayload = JSON.parse(atob(base64Url));
 
-                console.log('Decoded JWT Payload:', decodedPayload); // Debugging
+                setIsAdmin(decodedPayload['https://portfolio/roles'].includes('Admin'));
 
-                // Extract roles from token (adjust the key to match your Auth0 setup)
-                const roles: string[] = decodedPayload['https://portfolio/roles'] || [];
-                console.log('Extracted Roles:', roles); // Debugging
-
-                setIsAdmin(roles.includes('Admin'));
-
-                const response = await fetch(
-                    'https://dev-bwwn1gqnz1pbm8ay.us.auth0.com/userinfo',
-                    {
-                        method: 'GET',
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`,
-                        },
-                    }
-                );
+                const response = await fetch('https://dev-bwwn1gqnz1pbm8ay.us.auth0.com/userinfo', {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                });
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch user info');
                 }
-
             } catch (err) {
                 console.error('Error fetching user info:', err);
             }
@@ -81,12 +69,7 @@ const Comments: React.FC = (): JSX.Element => {
     const handleApprove = async (commentId: string) => {
         try {
             await approveComment(commentId);
-
-            // Remove the approved comment from unapproved list and add it to approved list
-            setUnapprovedComments(prevComments =>
-                prevComments.filter(comment => comment.commentId !== commentId)
-            );
-
+            setUnapprovedComments(prevComments => prevComments.filter(comment => comment.commentId !== commentId));
             const approvedComment = unapprovedComments.find(comment => comment.commentId === commentId);
             if (approvedComment) {
                 setApprovedComments(prevComments => [...prevComments, approvedComment]);
@@ -97,12 +80,12 @@ const Comments: React.FC = (): JSX.Element => {
     };
 
     if (loading) {
-        return <div>Loading comments...</div>;
+        return <div className="loading-items">Loading comments</div>;
     }
 
     return (
         <div className="top-section">
-            <h2>Comments</h2>
+            <h2 className="page-title">Comments</h2>
             <div className="comment-list">
                 {approvedComments.length > 0 ? (
                     approvedComments.map(comment => (
@@ -115,10 +98,10 @@ const Comments: React.FC = (): JSX.Element => {
                     <p className="no-items">No approved comments available</p>
                 )}
             </div>
-            <button onClick={() => navigate(`/addComment`)}>Add Comment</button>
+            <button onClick={() => navigate(`/addComment`)} className="approve-button">Add Comment</button>
             {isAdmin && (
                 <>
-                    <h2>Unapproved Comments</h2>
+                    <h2 className="page-title"><br></br> Unapproved Comments</h2>
                     <div className="comment-list">
                         {unapprovedComments.length > 0 ? (
                             unapprovedComments.map(comment => (
@@ -128,7 +111,6 @@ const Comments: React.FC = (): JSX.Element => {
                                     <button onClick={() => handleApprove(comment.commentId)} className="approve-button">
                                         Approve
                                     </button>
-
                                 </div>
                             ))
                         ) : (

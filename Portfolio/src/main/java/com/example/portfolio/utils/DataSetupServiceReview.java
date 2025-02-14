@@ -111,7 +111,7 @@ public class DataSetupServiceReview implements CommandLineRunner {
     private void setupProjects() {
         Project project1 = buildProject(
                 "project1",
-                "Champlain Pet Clinic",
+                "Champlain Pet Clinic \uD83E\uDE7A\uD83D\uDC3E\uD83C\uDFE5",
                 "This is a project for the students at Champlain College Saint-Lambert." +
                         " The project is to create a web application for a pet clinic." +
                         " It consists of a API-Gateway and multi-service application like billing, cart, customer, inventory, and more." +
@@ -123,7 +123,7 @@ public class DataSetupServiceReview implements CommandLineRunner {
 
         Project project2 = buildProject(
                 "project2",
-                "Noodle Star",
+                "Noodle Star \uD83C\uDF1F",
                 "This is a project created for a chinese restaurant in Montreal called Noodle Star." +
                         " We are designing a full-stack web application from scratch where we include a place to view the menu, place orders, leave reviews, access your account, etc." +
                         " The project includes a React front-end, Spring Boot back-end, and a MongoDB database.",
@@ -133,7 +133,7 @@ public class DataSetupServiceReview implements CommandLineRunner {
 
         Project project3 = buildProject(
                 "project3",
-                "Turret Game",
+                "Turret Game \uD83D\uDEE1\uFE0F⚔\uFE0F",
                 "This is a game created in Unity where you fight to defend your tower from the other player." +
                         " It is a local 1v1 game which includes many Unity features like animations, physics, and more." +
                         " The players have to eliminate the other person and destroy their tower which also attacks them." +

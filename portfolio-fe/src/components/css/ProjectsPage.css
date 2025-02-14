@@ -6,6 +6,18 @@
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title Styling */
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007acc;
+    margin-bottom: 1rem;
+    animation: fadeIn 1s ease-in-out;
 }
 
 /* Grid layout for projects */
@@ -19,43 +31,45 @@
 /* Project item card */
 .project-item {
     background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #007acc;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     padding: 1.5rem;
     text-align: left;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    position: relative;
 }
 
 .project-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Styling for project information */
 .item-content p {
     margin: 0.5rem 0;
     font-size: 1rem;
-    color: #555;
+    color: #444;
 }
 
 .project-name {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: bold;
-    color: #341C02;
+    color: #007acc;
 }
 
 .project-description {
-    color: #444;
+    color: #555;
     font-style: italic;
 }
 
 .project-link {
     color: #007acc;
-    text-decoration: underline;
-    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
 }
 
 .project-link:hover {
@@ -69,14 +83,13 @@
 
 /* Image Styling */
 .project-image {
-    width: 100%; /* Ensures image stays within the card */
-    height: auto; /* Maintains aspect ratio */
+    width: 100%;
+    height: auto;
     max-height: 200px;
-    object-fit: cover; /* Ensures image fits nicely within the dimensions */
-    border-radius: 6px;
+    object-fit: cover;
+    border-radius: 10px;
     margin-top: 1rem;
-    display: block;
-    border: 2px solid black;
+    border: 3px solid #007acc;
 }
 
 /* No Items Message */
@@ -84,23 +97,74 @@
     font-size: 1.2rem;
     color: #888;
     margin-top: 2rem;
+    font-weight: bold;
+    animation: fadeIn 1s ease-in-out;
 }
 
 /* Loading Message */
-.loading-items {
+.loading-spinner {
     font-size: 1.5rem;
     font-weight: bold;
     color: #007acc;
     text-align: center;
     margin-top: 2rem;
+    animation: spin 1s linear infinite;
 }
 
-.project-item a {
-    text-decoration: none;  /* Removes underline */
-    color: inherit;  /* Ensures it uses normal text color */
-    display: block;  /* Makes the entire link behave as a block */
+/* Buttons */
+.admin-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
 }
 
+.delete-button, .edit-button, .add-button {
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.delete-button {
+    background: #ff4d4d;
+    color: white;
+}
+
+.delete-button:hover {
+    background: #cc0000;
+}
+
+.edit-button {
+    background: #ffcc00;
+    color: black;
+}
+
+.edit-button:hover {
+    background: #e6b800;
+}
+
+.add-button {
+    background: #28a745;
+    color: white;
+    margin-top: 1rem;
+}
+
+.add-button:hover {
+    background: #218838;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
