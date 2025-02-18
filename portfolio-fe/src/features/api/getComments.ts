@@ -41,7 +41,7 @@ export const updateComment = async (
 }
 
 export const deleteComment = async (
-    commentId: number
+    commentId: string
 ): Promise<void> => {
     await axiosInstance.delete<void>(
         `${backendUrl}/api/v1/comments/${commentId}`

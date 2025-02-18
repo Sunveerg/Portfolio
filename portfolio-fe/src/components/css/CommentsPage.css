@@ -90,6 +90,23 @@
     animation: spin 1s linear infinite;
 }
 
+.delete-button{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: white;
+    color: white;
+    border: none;
+    border-radius: 10%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .top-section {

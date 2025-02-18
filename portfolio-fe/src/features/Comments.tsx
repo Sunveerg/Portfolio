@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { useState, useEffect} from 'react';
 import { commentResponseModel } from './model/commentResponseModel';
-import { getApprovedComments, getUnapprovedComments, approveComment } from './api/getComments';
+import { getApprovedComments, getUnapprovedComments, approveComment, deleteComment } from './api/getComments';
 import '../components/css/CommentsPage.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -79,6 +79,24 @@ const Comments: React.FC = (): JSX.Element => {
         }
     };
 
+    const handleDeleteApproved = async (commentId: string) => {
+        try {
+            await deleteComment(commentId);
+            setApprovedComments(prevItems => prevItems.filter(item => item.commentId !== commentId));
+        } catch (error) {
+            console.error('Error deleting project:', error);
+        }
+    };
+
+    const handleDeleteUnapproved = async (commentId: string) => {
+        try {
+            await deleteComment(commentId);
+            setUnapprovedComments(prevItems => prevItems.filter(item => item.commentId !== commentId));
+        } catch (error) {
+            console.error('Error deleting project:', error);
+        }
+    };
+
     if (loading) {
         return <div className="loading-items">Loading comments</div>;
     }
@@ -89,10 +107,13 @@ const Comments: React.FC = (): JSX.Element => {
             <div className="comment-list">
                 {approvedComments.length > 0 ? (
                     approvedComments.map(comment => (
-                        <div className="comment-item" key={comment.commentId}>
-                            <p className="comment-author"><b>Author:</b> {comment.author}</p>
-                            <p className="comment-content"><b>Comment:</b> {comment.comment}</p>
-                        </div>
+                            <div className="comment-item" key={comment.commentId}>
+                                <p className="comment-author"><b>Author:</b> {comment.author}</p>
+                                <p className="comment-content"><b>Comment:</b> {comment.comment}</p>
+                                {isAdmin && (
+                                <button className="delete-button" onClick={() => handleDeleteApproved(comment.commentId)}>❌</button>
+                                )}
+                            </div>
                     ))
                 ) : (
                     <p className="no-items">No approved comments available</p>
@@ -110,6 +131,9 @@ const Comments: React.FC = (): JSX.Element => {
                                     <p className="comment-content"><b>Comment:</b> {comment.comment}</p>
                                     <button onClick={() => handleApprove(comment.commentId)} className="approve-button">
                                         Approve
+                                    </button>
+                                    <button className="delete-button" onClick={() => handleDeleteUnapproved(comment.commentId)}>
+                                        ❌
                                     </button>
                                 </div>
                             ))
