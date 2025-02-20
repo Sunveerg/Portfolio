@@ -8,6 +8,7 @@ import CommentsPage from "./pages/CommentsPage";
 import AddProject from "./features/AddProject";
 import UpdateProject from "./features/UpdateProject";
 import AddComment from "./features/AddComment";
+import Email from "./features/Email";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: PathRoutes.UpdateProject,
     element: <UpdateProject />
+  },
+  {
+    path: PathRoutes.Email,
+    element: <Email />
   }
 ]);
 

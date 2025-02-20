@@ -1,7 +1,14 @@
 import React from "react";
 import "./css/Footer.css";
+import { useNavigate } from 'react-router-dom';
 
 const Footer: React.FC = (): JSX.Element => {
+    const navigate = useNavigate();
+
+    const handleEmailClick = () => {
+        navigate('/email');
+    };
+
     return (
         <footer className="footer">
             <div className="footer-content">
@@ -15,10 +22,10 @@ const Footer: React.FC = (): JSX.Element => {
                         <img src="https://cdn-icons-png.flaticon.com/128/1051/1051275.png" alt="GitHub" className="social-image" />
                         <span>GitHub</span>
                     </a>
-                    <a href="mailto:sunveerghum@hotmail.com" className="footer-link">
+                    <button onClick={handleEmailClick} className="footer-link">
                         <img src="https://cdn-icons-png.flaticon.com/128/9068/9068642.png" alt="Email" className="social-image" />
                         <span>Email Me</span>
-                    </a>
+                    </button>
                     <a href="sunveercv.pdf" download="sunveercv.pdf" className="footer-link">
                         <img src="https://cdn-icons-png.flaticon.com/128/2195/2195529.png" alt="CV" className="social-image" />
                         <span>Download CV</span>

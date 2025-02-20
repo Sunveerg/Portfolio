@@ -9,6 +9,8 @@ const Projects: React.FC = (): JSX.Element => {
     const [projectItems, setProjectItems] = useState<projectResponseModel[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false);
+    const [projectToDelete, setprojectToDelete] = useState<string | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -59,13 +61,17 @@ const Projects: React.FC = (): JSX.Element => {
         fetchProjectsData();
     }, []);
 
-    const handleDelete = async (projectId: string) => {
-        try {
-            await deleteProject(projectId);
-            setProjectItems(prevItems => prevItems.filter(item => item.projectId !== projectId));
-        } catch (error) {
-            console.error('Error deleting project:', error);
+    const handleConfirmDelete = async () => {
+        if (projectToDelete){
+            await deleteProject(projectToDelete);
+            setProjectItems(prevItems => prevItems.filter(item => item.projectId !== projectToDelete));
         }
+        setShowDeleteConfirm(false);
+    };
+
+    const handleDeleteClick = (projectId: string) => {
+        setprojectToDelete(projectId);
+        setShowDeleteConfirm(true);
     };
 
     if (loading) {
@@ -88,7 +94,7 @@ const Projects: React.FC = (): JSX.Element => {
                                 </a>
                                 {isAdmin && (
                                     <div className="admin-buttons">
-                                        <button className="delete-button" onClick={() => handleDelete(item.projectId)}>❌</button>
+                                        <button className="delete-button" onClick={() => handleDeleteClick(item.projectId)}>❌</button>
                                         <button className="edit-button" onClick={() => navigate(`/updateProject/${item.projectId}`)}>✏️</button>
                                     </div>
                                 )}
@@ -102,6 +108,14 @@ const Projects: React.FC = (): JSX.Element => {
 
             {isAdmin && (
                 <button className="add-button" onClick={() => navigate('/addProject')}>➕ Add Project</button>
+            )}
+
+            {showDeleteConfirm && (
+                <div className="delete-confirm-modal">
+                    <p>Are you sure you want to delete this project?</p>
+                    <button onClick={handleConfirmDelete}>Yes</button> &nbsp;
+                    <button onClick={() => setShowDeleteConfirm(false)}>No</button>
+                </div>
             )}
         </div>
     );

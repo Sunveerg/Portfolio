@@ -10,6 +10,8 @@ const Comments: React.FC = (): JSX.Element => {
     const [unapprovedComments, setUnapprovedComments] = useState<commentResponseModel[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false);
+    const [commentToDelete, setCommentToDelete] = useState<string | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -79,22 +81,18 @@ const Comments: React.FC = (): JSX.Element => {
         }
     };
 
-    const handleDeleteApproved = async (commentId: string) => {
-        try {
-            await deleteComment(commentId);
-            setApprovedComments(prevItems => prevItems.filter(item => item.commentId !== commentId));
-        } catch (error) {
-            console.error('Error deleting project:', error);
+    const handleConfirmDelete = async () => {
+        if (commentToDelete) {
+            await deleteComment(commentToDelete);
+            setApprovedComments(prevItems => prevItems.filter(item => item.commentId !== commentToDelete));
+            setUnapprovedComments(prevItems => prevItems.filter(item => item.commentId !== commentToDelete));
         }
+        setShowDeleteConfirm(false);
     };
 
-    const handleDeleteUnapproved = async (commentId: string) => {
-        try {
-            await deleteComment(commentId);
-            setUnapprovedComments(prevItems => prevItems.filter(item => item.commentId !== commentId));
-        } catch (error) {
-            console.error('Error deleting project:', error);
-        }
+    const handleDeleteClick = (commentId: string) => {
+        setCommentToDelete(commentId);
+        setShowDeleteConfirm(true);
     };
 
     if (loading) {
@@ -111,7 +109,7 @@ const Comments: React.FC = (): JSX.Element => {
                                 <p className="comment-author"><b>Author:</b> {comment.author}</p>
                                 <p className="comment-content"><b>Comment:</b> {comment.comment}</p>
                                 {isAdmin && (
-                                <button className="delete-button" onClick={() => handleDeleteApproved(comment.commentId)}>❌</button>
+                                <button className="delete-button" onClick={() => handleDeleteClick(comment.commentId)}>❌</button>
                                 )}
                             </div>
                     ))
@@ -132,7 +130,7 @@ const Comments: React.FC = (): JSX.Element => {
                                     <button onClick={() => handleApprove(comment.commentId)} className="approve-button">
                                         Approve
                                     </button>
-                                    <button className="delete-button" onClick={() => handleDeleteUnapproved(comment.commentId)}>
+                                    <button className="delete-button" onClick={() => handleDeleteClick(comment.commentId)}>
                                         ❌
                                     </button>
                                 </div>
@@ -142,6 +140,13 @@ const Comments: React.FC = (): JSX.Element => {
                         )}
                     </div>
                 </>
+            )}
+            {showDeleteConfirm && (
+                <div className="delete-confirm-modal">
+                    <p>Are you sure you want to delete this comment?</p>
+                    <button onClick={handleConfirmDelete}>Yes</button> &nbsp;
+                    <button onClick={() => setShowDeleteConfirm(false)}>No</button>
+                </div>
             )}
         </div>
     );

@@ -1,0 +1,71 @@
+/* EmailForm.css */
+.email-div {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.email-h2 {
+    text-align: center;
+    color: #333;
+}
+
+.email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.email-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.email-input, .email-textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.email-input:focus, .email-textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.email-button {
+    padding: 12px 18px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.email-button:hover {
+    background-color: #0056b3;
+}
+
+.email-button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+.email-p {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #28a745; /* Success message */
+}
+
+.email-p.error {
+    color: #dc3545; /* Error message */
+}
