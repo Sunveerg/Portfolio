@@ -3,6 +3,7 @@ export enum PathRoutes {
   Default = '/',
   HomePage = '/home',
   SunveerPage = '/sunveer',
+  UpdateSunveer = '/updateSunveer/:sunveerId',
   CallbackPage = '/callback',
   Projects = '/projects',
   AddProject = '/addProject',

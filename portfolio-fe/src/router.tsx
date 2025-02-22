@@ -9,6 +9,7 @@ import AddProject from "./features/AddProject";
 import UpdateProject from "./features/UpdateProject";
 import AddComment from "./features/AddComment";
 import Email from "./features/Email";
+import UpdateSunveer from "./features/UpdateSunveer";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: PathRoutes.SunveerPage,
     element: <SunveerPage />,
+  },
+  {
+    path: PathRoutes.UpdateSunveer,
+    element: <UpdateSunveer />,
   },
   {
     path: PathRoutes.CallbackPage,

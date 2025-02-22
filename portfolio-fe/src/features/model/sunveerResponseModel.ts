@@ -1,5 +1,11 @@
+export interface quotesResponseModel {
+  quote: string;
+  author: string;
+}
 export interface sunveerResponseModel {
-  sunveerId: number;
+  sunveerId: string;
   skills: string;
   hobbies: string;
+  description: string;
+  quotesList: quotesResponseModel[];
 }

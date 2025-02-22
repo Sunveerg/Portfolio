@@ -4,7 +4,10 @@ package com.example.portfolio.utils;
 import com.example.portfolio.CommentSubdomain.DataLayer.Comment;
 import com.example.portfolio.CommentSubdomain.PresentationLayer.CommentRequestModel;
 import com.example.portfolio.CommentSubdomain.PresentationLayer.CommentResponseModel;
+import com.example.portfolio.MyselfSubdomain.DataLayer.Quotes;
 import com.example.portfolio.MyselfSubdomain.DataLayer.Sunveer;
+import com.example.portfolio.MyselfSubdomain.PresentationLayer.QuotesRequestModel;
+import com.example.portfolio.MyselfSubdomain.PresentationLayer.QuotesResponseModel;
 import com.example.portfolio.MyselfSubdomain.PresentationLayer.SunveerResponseModel;
 import com.example.portfolio.ProjectSubdomain.DataLayer.Project;
 import com.example.portfolio.ProjectSubdomain.PresentationLayer.ProjectRequestModel;
@@ -16,16 +19,37 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
 public class EntityDTOUtil {
 
+    public static List<QuotesResponseModel> toQuotesResponseDTO(List<Quotes> quotesList) {
+        return quotesList.stream()
+                .map(details -> QuotesResponseModel.builder()
+                        .quote(details.getQuote())
+                        .author(details.getAuthor())
+                        .build())
+                .toList();
+    }
+
+    public static Quotes toQuotesEntity(QuotesRequestModel requestModel) {
+        Quotes quotes = new Quotes();
+        quotes.setQuote(requestModel.getQuote());
+        quotes.setAuthor(requestModel.getAuthor());
+        return quotes;
+    }
 
     public static SunveerResponseModel toSunveerResponseDTO(Sunveer sunveer) {
         SunveerResponseModel sunveerResponseModel = new SunveerResponseModel();
-        BeanUtils.copyProperties(sunveer, sunveerResponseModel);
+        sunveerResponseModel.setSunveerId(sunveer.getSunveerId());
+        sunveerResponseModel.setSkills(sunveer.getSkills());
+        sunveerResponseModel.setHobbies(sunveer.getHobbies());
+        sunveerResponseModel.setDescription(sunveer.getDescription());
+        sunveerResponseModel.setQuotesList(toQuotesResponseDTO(sunveer.getQuotesList()));
+
         return sunveerResponseModel;
     }
 

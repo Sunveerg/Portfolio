@@ -1,11 +1,10 @@
 package com.example.portfolio.MyselfSubdomain.PresentationLayer;
 
 import com.example.portfolio.MyselfSubdomain.BusinessLayer.SunveerService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 
 @RestController
@@ -23,5 +22,12 @@ public class SunveerController {
     @GetMapping()
     public Flux<SunveerResponseModel> getAllSunveer() {
         return sunveerService.getAllSunveer();
+    }
+
+    @PutMapping("/{sunveerId}")
+    public Mono<ResponseEntity<SunveerResponseModel>> updateSunveer(@RequestBody Mono<SunveerRequestModel> sunveerRequestModel, @PathVariable String sunveerId) {
+        return sunveerService.updateSunveer(sunveerRequestModel, sunveerId)
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 }

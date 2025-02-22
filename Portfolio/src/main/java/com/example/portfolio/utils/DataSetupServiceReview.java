@@ -2,6 +2,7 @@ package com.example.portfolio.utils;
 
 import com.example.portfolio.CommentSubdomain.DataLayer.Comment;
 import com.example.portfolio.CommentSubdomain.DataLayer.CommentRepository;
+import com.example.portfolio.MyselfSubdomain.DataLayer.Quotes;
 import com.example.portfolio.MyselfSubdomain.DataLayer.Sunveer;
 import com.example.portfolio.MyselfSubdomain.DataLayer.SunveerRepo;
 import com.example.portfolio.ProjectSubdomain.DataLayer.Project;
@@ -36,7 +37,21 @@ public class DataSetupServiceReview implements CommandLineRunner {
     }
 
     private void setupSunveer() {
-        Sunveer sunveer1 = buildSunveer("sunveerId1", "Java☕\uFE0F, Spring\uD83C\uDF31, React⚛\uFE0F, Typescript\uD83D\uDD35, Languages\uD83C\uDF0D\uD83D\uDCAC, and more on my CV which you can download!", "Football, Basketball, Video-Games, and coding of course\uD83D\uDCBB.");
+        Quotes quote1 = Quotes.builder()
+                .quote("The only way to do great work is to love what you do.")
+                .author("Steve Jobs")
+                .build();
+        Quotes quote2 = Quotes.builder()
+                .quote("One day or day one, you decide.")
+                .author("Paulo Coelho")
+                .build();
+        Sunveer sunveer1 = buildSunveer("sunveerId1",
+                "Java☕\uFE0F, Spring\uD83C\uDF31, React⚛\uFE0F, Typescript\uD83D\uDD35, Languages\uD83C\uDF0D\uD83D\uDCAC, and more on my CV which you can download!",
+                "Football, Basketball, Video-Games, and coding of course\uD83D\uDCBB.",
+                "I am currently a full-time student at Champlain College studying Computer Science.\n" +
+                        "            I aspire to become a software engineer and am passionate about learning new technologies.\n" +
+                        "            I also enjoy travelling, going on hikes and being outside.",
+                List.of(quote1, quote2));
 
         Flux.just(sunveer1)
                 .flatMap(sunveer -> {
@@ -51,11 +66,13 @@ public class DataSetupServiceReview implements CommandLineRunner {
     }
 
 
-    private Sunveer buildSunveer(String sunveerId, String skills, String hobbies) {
+    private Sunveer buildSunveer(String sunveerId, String skills, String hobbies, String description, List<Quotes> quotesList) {
         return Sunveer.builder()
                 .sunveerId(sunveerId)
                 .skills(skills)
                 .hobbies(hobbies)
+                .description(description)
+                .quotesList(quotesList)
                 .build();
     }
 
