@@ -68,7 +68,7 @@ const SunveerList: React.FC = (): JSX.Element => {
       <div className="top-section">
         <h2 className="page-title">Sunveer Ghumman</h2>
         <img
-            src="https://media.licdn.com/dms/image/v2/D4E03AQGall4Soxq-HQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1728405851116?e=1743638400&v=beta&t=kKzFYapyUH-TqUI0uN0t9CIGF645me5uIMh7esu0ueg"
+            src="https://media.licdn.com/dms/image/v2/D4E03AQGall4Soxq-HQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1728405851116?e=1752710400&v=beta&t=IOseeE7Ne27V-hgKsNVaopMfJA6Z7g-gLjiY3a6tYKc"
             alt="Sunveer Ghumman"
             className="profile-image"
         />
